@@ -22,8 +22,8 @@ public class CommentController {
     }
 
     @GetMapping("/postings/{postingId}/comments")
-    public ResponseEntity<List<GetCommentResponse>> getComments(@PathVariable Long postingId) {
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.getAll(postingId));
+    public ResponseEntity<List<GetCommentResponse>> getComments(@PathVariable Long postingId) { // @RequestParam(required=false) String xxx, Null일수도 있음
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.getAll(postingId)); // commentService.search(xxx)
     }
 
     @GetMapping("/postings/{postingId}/comments/{commentId}")

@@ -15,6 +15,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // @Column(unique = true)
     private String content;
 
     // 게시글이 있어야만 댓글도 존재할 수 있기때문에, optional은 false

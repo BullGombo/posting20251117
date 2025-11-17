@@ -35,6 +35,17 @@ public class CommentService {
         );
     }
 
+//    @Transactional
+//    public List<SearchCommentResponse> search(String xxx) {
+//        List<Comment> comments = commentRepository.findByPostingTitle(xxx);
+//        return comments.stream()
+//                .map(comment -> new SearchCommentResponse(
+//                        comment.getId(),
+//                        comment.getContent()
+//                        //comment.getPosting().getTitle()
+//                )).toList();
+//    }
+
     @Transactional(readOnly = true)
     public List<GetCommentResponse> getAll(Long postingId) {
         Posting posting = postingRepository.findById(postingId).orElseThrow(
