@@ -1,4 +1,33 @@
 package com.posting20251117.comment.entity;
 
+import com.posting20251117.posting.entity.Posting;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Entity
+@Table(name = "comments")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String content;
+
+    // 게시글이 있어야만 댓글도 존재할 수 있기때문에, optional은 false
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)    // optional은 JPA에서 null 혀용 여부
+    @JoinColumn(name = "posting_id",  nullable = false)     // nullable은 DB에서 null 혀용 여부
+    private Posting posting;
+
+    public Comment(String content, Posting posting) {
+        this.content = content;
+        this.posting = posting;
+    }
+
+    public void update(String content) {
+        this.content = content;
+    }
 }
